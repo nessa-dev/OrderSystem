@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace OrderSystem.Domain.Entities
 {
-    public class Customer
+    public enum OrderStatus
     {
 
-
+        Open = 1,
+        Finalized = 2,
+        Cancelled = 3
     }
 }
+
