@@ -11,5 +11,6 @@ namespace OrderSystem.Domain.Entities
         public string Name { get; set; }
         public int Age { get; set; }
 
+        public int Birthday { get; set; }
     }
 }
