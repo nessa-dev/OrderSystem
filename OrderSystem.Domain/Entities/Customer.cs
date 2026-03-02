@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace OrderSystem.Domain.Entities
 {
-    public class Customer
+    public class Customer : Person
     {
+        public Guid Id { get; private set; }
 
+        public Customer(string name, string email) : base(name, email)
+        {
+            this.Id = Guid.NewGuid();
+        }
 
     }
 }

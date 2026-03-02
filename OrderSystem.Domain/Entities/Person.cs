@@ -8,9 +8,14 @@ namespace OrderSystem.Domain.Entities
 {
     public class Person
     {
-        public string Name { get; set; }
-        public int Age { get; set; }
+        public string Name { get; protected set; }
+        public string Email { get; protected set; }
 
-        public int Birthday { get; set; }
+        protected Person(string name, string email)
+        {
+            this.Name = name;
+            this.Email = email;
+        }
+
     }
 }
