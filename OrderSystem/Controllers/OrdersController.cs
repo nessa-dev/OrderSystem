@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OrderSystem.Services;
+using OrderSystem.DTOs;
 
 namespace OrderSystem.Controllers
 {
@@ -6,10 +8,24 @@ namespace OrderSystem.Controllers
     [Route("api/[controller]")]
     public class OrdersController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Test()
+        private readonly OrderService _orderService;
+
+        public OrdersController(OrderService orderService)
         {
-            return Ok("Orders API is working!");
+            _orderService = orderService;
+        }
+
+        [HttpGet]
+        public IActionResult GetOrders()
+        {
+            return Ok(_orderService.GetOrders());
+        }
+
+        [HttpPost]
+        public IActionResult CreateOrder([FromBody] CreateOrderDto dto)
+        {
+            var order = _orderService.CreateOrder(dto);
+            return Ok(order);
         }
     }
 }
