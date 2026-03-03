@@ -2,7 +2,7 @@
 {
     public class CreateOrderDto
     {
-        public string customerName { get; set; }    
+        public string CustomerName { get; set; } = string.Empty;
         public string TotalAmount { get; set; }
 
 

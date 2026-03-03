@@ -12,6 +12,7 @@ namespace OrderSystem.Domain.Entities
         Open = 1,
         Finalized = 2,
         Cancelled = 3
+
     }
 }
 

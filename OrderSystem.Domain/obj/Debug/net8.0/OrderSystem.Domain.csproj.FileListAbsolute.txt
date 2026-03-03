@@ -1,0 +1,12 @@
+C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\OrderSystem.Domain\bin\Debug\net8.0\OrderSystem.Domain.deps.json
+C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\OrderSystem.Domain\bin\Debug\net8.0\OrderSystem.Domain.dll
+C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\OrderSystem.Domain\bin\Debug\net8.0\OrderSystem.Domain.pdb
+C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\OrderSystem.Domain\obj\Debug\net8.0\OrderSystem.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\OrderSystem.Domain\obj\Debug\net8.0\OrderSystem.Domain.AssemblyInfoInputs.cache
+C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\OrderSystem.Domain\obj\Debug\net8.0\OrderSystem.Domain.AssemblyInfo.cs
+C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\OrderSystem.Domain\obj\Debug\net8.0\OrderSystem.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\OrderSystem.Domain\obj\Debug\net8.0\OrderSystem.Domain.sourcelink.json
+C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\OrderSystem.Domain\obj\Debug\net8.0\OrderSystem.Domain.dll
+C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\OrderSystem.Domain\obj\Debug\net8.0\refint\OrderSystem.Domain.dll
+C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\OrderSystem.Domain\obj\Debug\net8.0\OrderSystem.Domain.pdb
+C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\OrderSystem.Domain\obj\Debug\net8.0\ref\OrderSystem.Domain.dll

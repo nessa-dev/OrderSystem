@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OrderSystem.Services;
-using OrderSystem.DTOs;
+using OrderSystem.Domain.Entities; 
 
 namespace OrderSystem.Controllers
 {
@@ -16,16 +16,17 @@ namespace OrderSystem.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetOrders()
+        public async Task<IActionResult> Get()
         {
-            return Ok(_orderService.GetOrders());
+            var orders = await _orderService.GetOrdersAsync();
+            return Ok(orders);
         }
 
         [HttpPost]
-        public IActionResult CreateOrder([FromBody] CreateOrderDto dto)
+        public async Task<IActionResult> Create(Order order)
         {
-            var order = _orderService.CreateOrder(dto);
-            return Ok(order);
+            var created = await _orderService.CreateOrderAsync(order);
+            return Ok(created);
         }
     }
 }
