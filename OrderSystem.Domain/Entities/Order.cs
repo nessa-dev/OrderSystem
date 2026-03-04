@@ -9,6 +9,8 @@ namespace OrderSystem.Domain.Entities
 {
     public class Order
     {
+        public int Id { get; set; }
+
         private readonly List<Product> _products = new();
         public OrderStatus Status { get; private set; } = OrderStatus.Open;
 

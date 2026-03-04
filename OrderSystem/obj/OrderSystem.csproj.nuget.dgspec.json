@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Vanessa\\Documents\\vanessa\\Projetos\\curso\\OrderSystem\\ordersystem\\OrderSystem.csproj": {}
+    "C:\\Users\\Vanessa\\Documents\\vanessa\\Projetos\\curso\\OrderSystem\\OrderSystem\\OrderSystem.csproj": {}
   },
   "projects": {
     "C:\\Users\\Vanessa\\Documents\\vanessa\\Projetos\\curso\\OrderSystem\\OrderSystem.Domain\\OrderSystem.Domain.csproj": {
@@ -69,14 +69,14 @@
         }
       }
     },
-    "C:\\Users\\Vanessa\\Documents\\vanessa\\Projetos\\curso\\OrderSystem\\ordersystem\\OrderSystem.csproj": {
+    "C:\\Users\\Vanessa\\Documents\\vanessa\\Projetos\\curso\\OrderSystem\\OrderSystem\\OrderSystem.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Vanessa\\Documents\\vanessa\\Projetos\\curso\\OrderSystem\\ordersystem\\OrderSystem.csproj",
+        "projectUniqueName": "C:\\Users\\Vanessa\\Documents\\vanessa\\Projetos\\curso\\OrderSystem\\OrderSystem\\OrderSystem.csproj",
         "projectName": "OrderSystem",
-        "projectPath": "C:\\Users\\Vanessa\\Documents\\vanessa\\Projetos\\curso\\OrderSystem\\ordersystem\\OrderSystem.csproj",
+        "projectPath": "C:\\Users\\Vanessa\\Documents\\vanessa\\Projetos\\curso\\OrderSystem\\OrderSystem\\OrderSystem.csproj",
         "packagesPath": "C:\\Users\\Vanessa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Vanessa\\Documents\\vanessa\\Projetos\\curso\\OrderSystem\\ordersystem\\obj\\",
+        "outputPath": "C:\\Users\\Vanessa\\Documents\\vanessa\\Projetos\\curso\\OrderSystem\\OrderSystem\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
