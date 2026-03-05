@@ -64,5 +64,34 @@ namespace OrderSystem.Services
 
             await _context.SaveChangesAsync();
         }
+
+        public async Task CancelOrderAsync(int orderId)
+        {
+            var order = await _context.Orders
+                .Include(o => o.Products)
+                .FirstOrDefaultAsync(o => o.Id == orderId);
+
+            if (order == null)
+                throw new KeyNotFoundException("Order not found.");
+
+            order.Cancel();
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task RemoveProductAsync(int orderId, int productId)
+        {
+            var order = await _context.Orders
+                .Include(o => o.Products)
+                .FirstOrDefaultAsync(o => o.Id == orderId);
+
+            if (order == null)
+                throw new Exception("Order not found.");
+
+            order.RemoveProduct(productId);
+
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

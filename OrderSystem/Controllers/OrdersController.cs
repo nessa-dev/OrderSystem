@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OrderSystem.Services;
 using OrderSystem.Domain.Entities;
+using OrderSystem.DTOs;
+using OrderSystem.Services;
 
 namespace OrderSystem.Controllers
 {
@@ -21,26 +22,32 @@ namespace OrderSystem.Controllers
             var orders = await _orderService.GetAllAsync();
             return Ok(orders);
         }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var order = await _orderService.GetByIdAsync(id);
+
+            if (order == null)
+                return NotFound();
+
+            return Ok(order);
+        }
 
         [HttpPost]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create([FromBody] CreateOrderDto dto)
         {
             var created = await _orderService.CreateOrderAsync();
             return Ok(created);
         }
 
         [HttpPost("{id}/add-product")]
-        public async Task<IActionResult> AddProduct(int id, [FromBody] Product product)
+        public async Task<IActionResult> AddProduct(int id, [FromBody] AddProductDto dto)
         {
-            try
-            {
-                await _orderService.AddProductAsync(id, product);
-                return Ok("Product added successfully.");
-            }
-            catch (Exception ex)
-            {
-                return NotFound(ex.Message);
-            }
+            var product = new Product(dto.Name, dto.Price);
+
+            await _orderService.AddProductAsync(id, product);
+
+            return Ok();
         }
 
         [HttpPost("{id}/finalize")]
@@ -56,5 +63,24 @@ namespace OrderSystem.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("{id}/cancel")]
+        public async Task<IActionResult> Cancel(int id)
+        {
+            await _orderService.CancelOrderAsync(id);
+            return Ok("Order cancelled.");
+        }
+
+        [HttpGet("{id}/total")]
+        public async Task<IActionResult> GetTotal(int id)
+        {
+            var order = await _orderService.GetByIdAsync(id);
+
+            if (order == null)
+                return NotFound();
+
+            return Ok(order.CalculateTotal());
+        }
+
     }
 }

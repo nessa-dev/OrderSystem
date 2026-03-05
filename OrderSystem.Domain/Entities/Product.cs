@@ -26,6 +26,7 @@ namespace OrderSystem.Domain.Entities
             }
             this.Name = name;
             this.Price = price;
+
         }
 
     }
