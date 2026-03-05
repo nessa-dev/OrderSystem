@@ -13,12 +13,9 @@ namespace OrderSystem.Services
             _context = context;
         }
 
-        // ✅ CREATE
-        public async Task<Order> CreateOrderAsync(Order order)
+        public async Task<Order> CreateOrderAsync()
         {
-            // Business rule example
-            if (order.TotalAmount <= 0)
-                throw new ArgumentException("Total amount must be greater than zero.");
+            var order = new Order();
 
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
@@ -26,49 +23,46 @@ namespace OrderSystem.Services
             return order;
         }
 
-        // ✅ GET ALL
-        public async Task<List<Order>> GetOrdersAsync()
-        {
-            return await _context.Orders.ToListAsync();
-        }
-
-        // ✅ GET BY ID
         public async Task<Order?> GetByIdAsync(int id)
         {
-            return await _context.Orders.FindAsync(id);
+            return await _context.Orders
+                .Include(o => o.Products)
+                .FirstOrDefaultAsync(o => o.Id == id);
         }
 
-        // ✅ UPDATE
-        public async Task<Order?> UpdateAsync(int id, Order updatedOrder)
+        public async Task<List<Order>> GetAllAsync()
         {
-            var existingOrder = await _context.Orders.FindAsync(id);
-
-            if (existingOrder == null)
-                return null;
-
-            if (updatedOrder.TotalAmount <= 0)
-                throw new ArgumentException("Total amount must be greater than zero.");
-
-            existingOrder.CustomerName = updatedOrder.CustomerName;
-            existingOrder.TotalAmount = updatedOrder.TotalAmount;
-
-            await _context.SaveChangesAsync();
-
-            return existingOrder;
+            return await _context.Orders
+                .Include(o => o.Products)
+                .ToListAsync();
         }
 
-        // ✅ DELETE
-        public async Task<bool> DeleteAsync(int id)
+        public async Task AddProductAsync(int orderId, Product product)
         {
-            var order = await _context.Orders.FindAsync(id);
+            var order = await _context.Orders
+                .Include(o => o.Products)
+                .FirstOrDefaultAsync(o => o.Id == orderId);
 
             if (order == null)
-                return false;
+                throw new Exception("Order not found.");
 
-            _context.Orders.Remove(order);
+            order.AddProduct(product);
+
             await _context.SaveChangesAsync();
+        }
 
-            return true;
+        public async Task FinalizeOrderAsync(int orderId)
+        {
+            var order = await _context.Orders
+                .Include(o => o.Products)
+                .FirstOrDefaultAsync(o => o.Id == orderId);
+
+            if (order == null)
+                throw new Exception("Order not found.");
+
+            order.FinalizeOrder();
+
+            await _context.SaveChangesAsync();
         }
     }
 }

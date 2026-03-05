@@ -139,3 +139,4 @@ C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\ordersystem\obj\De
 C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\ordersystem\obj\Debug\net8.0\OrderSystem.pdb
 C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\ordersystem\obj\Debug\net8.0\OrderSystem.genruntimeconfig.cache
 C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\ordersystem\obj\Debug\net8.0\ref\OrderSystem.dll
+C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\OrderSystem\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

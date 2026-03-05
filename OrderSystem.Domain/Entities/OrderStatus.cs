@@ -8,7 +8,6 @@ namespace OrderSystem.Domain.Entities
 {
     public enum OrderStatus
     {
-
         Open = 1,
         Finalized = 2,
         Cancelled = 3
