@@ -82,5 +82,19 @@ namespace OrderSystem.Controllers
             return Ok(order.CalculateTotal());
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _orderService.DeleteOrderAsync(id);
+                return Ok("Order deleted.");
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
     }
 }

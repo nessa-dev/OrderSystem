@@ -93,5 +93,16 @@ namespace OrderSystem.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteOrderAsync(int id)
+        {
+            var order = await _context.Orders.FindAsync(id);
+
+            if (order == null)
+                throw new Exception("Order not found.");
+
+            _context.Orders.Remove(order);
+
+            await _context.SaveChangesAsync();
+        }
     }
 }
