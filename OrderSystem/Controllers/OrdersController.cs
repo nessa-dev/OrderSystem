@@ -36,7 +36,7 @@ namespace OrderSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateOrderDto dto)
         {
-            var created = await _orderService.CreateOrderAsync();
+            var created = await _orderService.CreateOrderAsync(dto.CustomerName);
             return Ok(created);
         }
 
@@ -81,6 +81,7 @@ namespace OrderSystem.Controllers
 
             return Ok(order.CalculateTotal());
         }
+
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, UpdateOrderDto dto)
         {
@@ -108,6 +109,22 @@ namespace OrderSystem.Controllers
                 return NotFound(ex.Message);
             }
         }
+
+        [HttpDelete("{orderId}/products/{productId}")]
+        public async Task<IActionResult> RemoveProduct(int orderId, int productId)
+        {
+            try
+            {
+                await _orderService.RemoveProductAsync(orderId, productId);
+
+                return Ok("Product removed from order.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
     }
 }

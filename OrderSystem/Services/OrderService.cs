@@ -13,9 +13,12 @@ namespace OrderSystem.Services
             _context = context;
         }
 
-        public async Task<Order> CreateOrderAsync()
+        public async Task<Order> CreateOrderAsync(string customerName)
         {
-            var order = new Order();
+            var order = new Order
+            {
+                CustomerName = customerName
+            };
 
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
