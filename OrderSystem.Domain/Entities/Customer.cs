@@ -15,5 +15,7 @@ namespace OrderSystem.Domain.Entities
             this.Id = Guid.NewGuid();
         }
 
+
+
     }
 }

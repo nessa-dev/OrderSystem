@@ -10,6 +10,7 @@ namespace OrderSystem.Domain.Entities
     public class Order
     {
         public int Id { get; set; }
+        public string CustomerName { get; set; } = string.Empty;
 
         private readonly List<Product> _products = new();
         public OrderStatus Status { get; private set; } = OrderStatus.Open;

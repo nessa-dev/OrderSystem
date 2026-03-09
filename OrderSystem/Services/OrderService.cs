@@ -37,16 +37,14 @@ namespace OrderSystem.Services
                 .ToListAsync();
         }
 
-        public async Task AddProductAsync(int orderId, Product product)
+        public async Task UpdateOrderAsync(int id, string customerName)
         {
-            var order = await _context.Orders
-                .Include(o => o.Products)
-                .FirstOrDefaultAsync(o => o.Id == orderId);
+            var order = await _context.Orders.FindAsync(id);
 
             if (order == null)
                 throw new Exception("Order not found.");
 
-            order.AddProduct(product);
+            order.CustomerName = customerName;
 
             await _context.SaveChangesAsync();
         }
@@ -64,7 +62,6 @@ namespace OrderSystem.Services
 
             await _context.SaveChangesAsync();
         }
-
         public async Task CancelOrderAsync(int orderId)
         {
             var order = await _context.Orders
@@ -79,6 +76,33 @@ namespace OrderSystem.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteOrderAsync(int id)
+        {
+            var order = await _context.Orders.FindAsync(id);
+
+            if (order == null)
+                throw new Exception("Order not found.");
+
+            _context.Orders.Remove(order);
+
+            await _context.SaveChangesAsync();
+        }
+
+
+        public async Task AddProductAsync(int orderId, Product product)
+        {
+            var order = await _context.Orders
+                .Include(o => o.Products)
+                .FirstOrDefaultAsync(o => o.Id == orderId);
+
+            if (order == null)
+                throw new Exception("Order not found.");
+
+            order.AddProduct(product);
+
+            await _context.SaveChangesAsync();
+        }
+
         public async Task RemoveProductAsync(int orderId, int productId)
         {
             var order = await _context.Orders
@@ -89,18 +113,6 @@ namespace OrderSystem.Services
                 throw new Exception("Order not found.");
 
             order.RemoveProduct(productId);
-
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task DeleteOrderAsync(int id)
-        {
-            var order = await _context.Orders.FindAsync(id);
-
-            if (order == null)
-                throw new Exception("Order not found.");
-
-            _context.Orders.Remove(order);
 
             await _context.SaveChangesAsync();
         }

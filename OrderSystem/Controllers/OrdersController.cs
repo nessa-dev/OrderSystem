@@ -81,6 +81,19 @@ namespace OrderSystem.Controllers
 
             return Ok(order.CalculateTotal());
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, UpdateOrderDto dto)
+        {
+            try
+            {
+                await _orderService.UpdateOrderAsync(id, dto.CustumerName);
+                return Ok("Order updated.");
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
