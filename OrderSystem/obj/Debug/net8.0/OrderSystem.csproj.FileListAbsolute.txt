@@ -140,3 +140,5 @@ C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\orderSystem\obj\De
 C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\orderSystem\obj\Debug\net8.0\OrderSystem.genruntimeconfig.cache
 C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\orderSystem\obj\Debug\net8.0\ref\OrderSystem.dll
 C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\OrderSystem\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\OrderSystem\bin\Debug\net8.0\ordersystem\package-lock.json
+C:\Users\Vanessa\Documents\vanessa\Projetos\curso\OrderSystem\OrderSystem\bin\Debug\net8.0\ordersystem\package.json

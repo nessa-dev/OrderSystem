@@ -9,6 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+
 // Configuração do Banco de Dados
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -16,7 +18,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Registro do Service (Injeção de Dependência)
 builder.Services.AddScoped<OrderService>();
 
+builder.Services.AddCors(options => {
+    options.AddPolicy("ReactPolicy", policy => {
+        policy.WithOrigins("http://localhost:5173").AllowAnyHeader().AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
+app.UseCors("ReactPolicy"); // <--- IMPORTANTE: Tem que vir antes de UseAuthorization
+
 
 if (app.Environment.IsDevelopment())
 {
