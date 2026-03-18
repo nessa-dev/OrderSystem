@@ -1,0 +1,14 @@
+# Pastas do Visual Studio e do Windows
+.vs/
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+
+# Pastas do Node (React)
+node_modules/
+dist/
+.env
+
+# Outros
+.DS_Store
