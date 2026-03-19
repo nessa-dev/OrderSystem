@@ -17,7 +17,8 @@ namespace OrderSystem.Infrastructure
         {
             modelBuilder.Entity<Order>()
                 .HasMany(o => o.Products)
-                .WithMany();
+                .WithMany()
+            .UsingEntity(j => j.ToTable("OrderProduct"));
 
             modelBuilder.Entity<Order>()
                 .Navigation(o => o.Products)

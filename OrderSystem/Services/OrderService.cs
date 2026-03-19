@@ -92,14 +92,15 @@ namespace OrderSystem.Services
         }
 
 
-        public async Task AddProductAsync(int orderId, int productId) // Agora recebe o ID do produto
+        // 1. Adicionamos "int quantity" nos parâmetros
+        public async Task AddProductAsync(int orderId, int productId, int quantity)
         {
-            // 1. Busca o Pedido incluindo a lista de produtos (usando o campo privado _products)
+            // Busca o Pedido incluindo a lista de produtos
             var order = await _context.Orders
-                .Include(o => "_products")
+                .Include(o => o.Products)
                 .FirstOrDefaultAsync(o => o.Id == orderId);
 
-            // 2. Busca o Produto no CATÁLOGO (a tabela que o funcionário alimentou)
+            // Busca o Produto no Catálogo
             var catalogProduct = await _context.Products.FindAsync(productId);
 
             if (order == null)
@@ -108,18 +109,24 @@ namespace OrderSystem.Services
             if (catalogProduct == null)
                 throw new Exception("Product not found in catalog.");
 
-            // 3. Adiciona o produto que já existe ao pedido
-            // A sua classe Order já tem a lógica de validação (se o pedido está aberto, etc)
-            order.AddProduct(catalogProduct);
+            if (quantity <= 0)
+                throw new Exception("Quantity must be greater than zero.");
 
-            // 4. Salva a associação no banco de dados
+            // 2. O PULO DO GATO: Usamos um loop para adicionar a quantidade desejada
+            for (int i = 0; i < quantity; i++)
+            {
+                // Chama o método da sua Entidade Order várias vezes
+                order.AddProduct(catalogProduct);
+            }
+
+            // 3. Salva todas as associações de uma vez
             await _context.SaveChangesAsync();
         }
 
         public async Task RemoveProductAsync(int orderId, int productId)
         {
             var order = await _context.Orders
-                .Include(o => "_products")
+                .Include(o => o.Products)
                 .FirstOrDefaultAsync(o => o.Id == orderId);
 
             if (order == null) throw new Exception("Pedido não encontrado.");

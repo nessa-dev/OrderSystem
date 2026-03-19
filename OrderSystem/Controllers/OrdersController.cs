@@ -45,8 +45,10 @@ namespace OrderSystem.Controllers
         {
             try
             {
-                await _orderService.AddProductAsync(id, dto.ProductId);
-                return Ok("Produto adicionado.");
+                // Agora passamos o ID do pedido, o ID do produto e a QUANTIDADE
+                await _orderService.AddProductAsync(id, dto.ProductId, dto.Quantity);
+
+                return Ok("Product added successfully.");
             }
             catch (Exception ex)
             {
