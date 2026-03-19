@@ -45,7 +45,6 @@ namespace OrderSystem.Controllers
         {
             try
             {
-                // Agora passamos o ID do pedido, o ID do produto e a QUANTIDADE
                 await _orderService.AddProductAsync(id, dto.ProductId, dto.Quantity);
 
                 return Ok("Product added successfully.");

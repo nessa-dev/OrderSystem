@@ -1,8 +1,9 @@
 ﻿import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { GrEdit } from "react-icons/gr";
+import { FaTrash } from "react-icons/fa";
 export default function App() {
-    // --- States (All English variables) ---
+    // --- States ---
     const [orders, setOrders] = useState([]);
     const [products, setProducts] = useState([]);
     const [customerName, setCustomerName] = useState('');
@@ -31,11 +32,13 @@ export default function App() {
     };
 
     useEffect(() => {
+        document.body.style.backgroundColor = '#f07592';
+        document.body.style.margin = '0';
+        document.body.style.padding = '0';
         loadData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // --- Catalog Logic (English labels) ---
     const handleCreateProduct = async (e) => {
         e.preventDefault();
         const price = parseFloat(newProductPrice);
@@ -98,7 +101,6 @@ export default function App() {
         } catch { alert(`Failed to ${msg} order.`); }
     };
 
-    // --- YOUR COLOR PALETTE (Confeitaria) ---
     const colors = {
         bg: '#e9e5d4',       
         brown: '#7e4414',   
@@ -140,7 +142,7 @@ export default function App() {
             borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', fontSize: '16px', width: '100%', transition: 'background-color 0.3s'
         },
 
-        // Secondary Action Buttons (Finalize/Cancel)
+        // Secondary Action Buttons 
         btnAction: (bgColor) => ({
             padding: '10px 15px', backgroundColor: bgColor, color: colors.white, border: 'none',
             borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', flex: 1, fontSize: '14px'
@@ -151,7 +153,6 @@ export default function App() {
         price: { color: colors.green, fontWeight: 'bold', fontSize: '1.1em' }
     };
 
-    // Reusable Component for Order Cards
     const OrderCard = ({ order, showActions, statusColor, statusText }) => (
         <div key={order.id} style={{ ...styles.card, borderLeftColor: statusColor }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -165,7 +166,6 @@ export default function App() {
                 Customer: <strong>{order.customerName}</strong>
             </p>
 
-            {/* List of Desserts included */}
             <ul style={styles.productList}>
                 {order.products && order.products.length > 0 ? (
                     order.products.map((p, i) => (
@@ -195,15 +195,22 @@ export default function App() {
     );
 
     return (
+
         <div style={styles.container}>
+
+            {/* --- LOGO --- */}
             <header style={styles.header}>
-                {/* LOGO TEMPORARY PLACEHOLDER */}
-                {/* <img src="/logo.png" alt="Sweet Management" style={{maxHeight: '100px'}} /> */}
-                <h1 style={{ margin: '10px 0 0 0', color: colors.brown, fontSize: '3em' }}>🍰 Sweet Management Bakery</h1>
-                <p style={{ color: colors.text, margin: '5px 0 0 0' }}>Order & Menu System</p>
+                <img
+                    src="/logo.png"  
+                    alt="Logo Confeitaria"
+                    style={{
+                        maxHeight: '150px', 
+                        display: 'block',
+                        margin: '0 auto 10px auto' 
+                    }}
+                />
             </header>
 
-            {/* Navigation Tabs (PORTUGUESE labels, ENGLISH variables) */}
             <div style={styles.nav}>
                 <button style={styles.tabBtn(activeTab === 'catalog', colors.brown)} onClick={() => setActiveTab('catalog')}>Menu (Desserts)</button>
                 <button style={styles.tabBtn(activeTab === 'open', colors.pink)} onClick={() => setActiveTab('open')}>Open Orders</button>
@@ -234,12 +241,33 @@ export default function App() {
                                         <p style={styles.price}>$ {p.price?.toFixed(2)}</p>
                                     </div>
 
-
                                     <div style={{ display: 'flex', gap: '8px' }}>
-                                        <button onClick={() => handleEditProduct(p.id, p.name, p.price)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2em' }}>✏️</button>
-                                        <button onClick={() => handleDeleteProduct(p.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2em' }}>🗑️</button>
-                                    </div>
+                                        <button
+                                            onClick={() => handleEditProduct(p.id, p.name, p.price)}
+                                            style={{
+                                                background: 'none',
+                                                border: 'none',
+                                                cursor: 'pointer',
+                                                fontSize: '1.2em',
+                                                color: colors.pink
+                                            }}
+                                        >
+                                            <GrEdit />
+                                        </button>
 
+                                        <button
+                                            onClick={() => handleDeleteProduct(p.id)}
+                                            style={{
+                                                background: 'none',
+                                                border: 'none',
+                                                cursor: 'pointer',
+                                                fontSize: '1.2em',
+                                                color: colors.pink
+                                            }}
+                                        >
+                                            <FaTrash />
+                                        </button>
+                                    </div>
 
 
                                 </div>
@@ -274,7 +302,7 @@ export default function App() {
                         <button onClick={handleCreateOrder} style={{ ...styles.btnMain, marginTop: '20px' }}>Confirm Order</button>
                     </div>
 
-                    <h3>Encomendas Pendentes ({openOrders.length})</h3>
+                    <h3>Pending Orders ({openOrders.length})</h3>
                     {openOrders.map(o => <OrderCard order={o} showActions={true} statusColor={colors.pink} statusText="OPEN" />)}
                 </div>
             )}
@@ -282,15 +310,16 @@ export default function App() {
             {/* --- ABA: ENTREGUES (Histórico) --- */}
             {activeTab === 'finalized' && (
                 <div>
-                    <h3>Histórico de Delícias Entregues ({finalizedOrders.length})</h3>
+                    <h3>History of Delights Delivered ({finalizedOrders.length})</h3>
                     {finalizedOrders.map(o => <OrderCard order={o} showActions={false} statusColor="#2196f3" statusText="DELIVERED" />)}
                 </div>
             )}
 
             {/* --- ABA: CANCELADAS --- */}
+
             {activeTab === 'cancelled' && (
                 <div>
-                    <h3>Encomendas Canceladas ({cancelledOrders.length})</h3>
+                    <h3>Cancelled Orders ({cancelledOrders.length})</h3>
                     {cancelledOrders.map(o => <OrderCard order={o} showActions={false} statusColor={colors.cancelled} statusText="CANCELED" />)}
                 </div>
             )}

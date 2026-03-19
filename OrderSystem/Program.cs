@@ -34,24 +34,21 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("ReactPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:5173") // Your React URL
+        policy.WithOrigins("http://localhost:5173") 
               .AllowAnyHeader()
-              .AllowAnyMethod(); // Crucial: Allows POST, PUT (Edit), and DELETE
+              .AllowAnyMethod(); 
     });
 });
 
 var app = builder.Build();
 
-// --- 2. MIDDLEWARE PIPELINE ---
 
-// Enable Swagger in Development mode
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
-// Security and Routing (Order is critical here!)
 app.UseCors("ReactPolicy");
 
 app.UseHttpsRedirection();
