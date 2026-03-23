@@ -5,16 +5,15 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// SERVICES CONFIGURATION 
 
 // Add Controllers with JSON options to handle frontend communication
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
-        // Essential: Prevents 500 errors in Many-to-Many relationships (Orders <-> Products)
+        // Essential: Prevents 500 errors in Many-to-Many relationships 
         options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 
-        // Essential: Standardizes JSON properties to camelCase (lowercase first letter)
+        // Essential: Standardizes JSON properties to camelCase 
         options.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
     });
 

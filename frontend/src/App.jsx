@@ -3,7 +3,7 @@ import axios from 'axios';
 import { GrEdit } from "react-icons/gr";
 import { FaTrash } from "react-icons/fa";
 export default function App() {
-    // --- States ---
+    // States 
     const [orders, setOrders] = useState([]);
     const [products, setProducts] = useState([]);
     const [customerName, setCustomerName] = useState('');
@@ -15,7 +15,7 @@ export default function App() {
     const [activeTab, setActiveTab] = useState('open'); 
     const api = axios.create({ baseURL: 'https://localhost:7114/api' });
 
-    // --- Filters (Status: 1=Open, 2=Finalized, 3=Cancelled) ---
+    // Filters (Status: 1=Open, 2=Finalized, 3=Cancelled) 
     const openOrders = orders.filter(o => o.status === 1);
     const finalizedOrders = orders.filter(o => o.status === 2);
     const cancelledOrders = orders.filter(o => o.status === 3);
@@ -68,7 +68,7 @@ export default function App() {
         }
     };
 
-    // --- Sales Logic (Orders) ---
+    // Sales Logic (Orders)
     const addToTempOrder = () => {
         if (!selectedProductId) return alert("Select a dessert!");
         const product = products.find(p => p.id === parseInt(selectedProductId));
@@ -198,7 +198,7 @@ export default function App() {
 
         <div style={styles.container}>
 
-            {/* --- LOGO --- */}
+            {/*  LOGO */}
             <header style={styles.header}>
                 <img
                     src="/logo.png"  
@@ -218,7 +218,7 @@ export default function App() {
                 <button style={styles.tabBtn(activeTab === 'cancelled', colors.cancelled)} onClick={() => setActiveTab('cancelled')}>Cancelled</button>
             </div>
 
-            {/* --- TAB: MENU --- */}
+            {/*  TAB: MENU  */}
             {activeTab === 'catalog' && (
                 <div>
                     <div style={{ ...styles.card, borderLeftColor: colors.brown }}>
@@ -277,7 +277,7 @@ export default function App() {
                 </div>
             )}
 
-            {/* -- TAB: OPEN ORDERS -- */}
+            {/*  TAB: OPEN ORDERS  */}
             {activeTab === 'open' && (
                 <div>
                     <div style={{ ...styles.card, borderLeftColor: colors.pink }}>
@@ -307,7 +307,7 @@ export default function App() {
                 </div>
             )}
 
-            {/* --- ABA: ENTREGUES --- */}
+            {/*  ABA: ENTREGUES */}
             {activeTab === 'finalized' && (
                 <div>
                     <h3>History of Delights Delivered ({finalizedOrders.length})</h3>
@@ -315,7 +315,7 @@ export default function App() {
                 </div>
             )}
 
-            {/* --- ABA: CANCELADAS --- */}
+            {/* ABA: CANCELADAS */}
 
             {activeTab === 'cancelled' && (
                 <div>
