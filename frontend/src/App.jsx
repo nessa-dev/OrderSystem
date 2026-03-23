@@ -218,7 +218,7 @@ export default function App() {
                 <button style={styles.tabBtn(activeTab === 'cancelled', colors.cancelled)} onClick={() => setActiveTab('cancelled')}>Cancelled</button>
             </div>
 
-            {/* --- TAB: MENU (DESSERTS) --- */}
+            {/* --- TAB: MENU --- */}
             {activeTab === 'catalog' && (
                 <div>
                     <div style={{ ...styles.card, borderLeftColor: colors.brown }}>
@@ -277,7 +277,7 @@ export default function App() {
                 </div>
             )}
 
-            {/* --- TAB: OPEN ORDERS --- */}
+            {/* -- TAB: OPEN ORDERS -- */}
             {activeTab === 'open' && (
                 <div>
                     <div style={{ ...styles.card, borderLeftColor: colors.pink }}>
@@ -307,7 +307,7 @@ export default function App() {
                 </div>
             )}
 
-            {/* --- ABA: ENTREGUES (Histórico) --- */}
+            {/* --- ABA: ENTREGUES --- */}
             {activeTab === 'finalized' && (
                 <div>
                     <h3>History of Delights Delivered ({finalizedOrders.length})</h3>

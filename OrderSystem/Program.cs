@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// --- 1. SERVICES CONFIGURATION ---
+// SERVICES CONFIGURATION 
 
 // Add Controllers with JSON options to handle frontend communication
 builder.Services.AddControllers()

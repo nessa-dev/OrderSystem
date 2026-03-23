@@ -123,7 +123,7 @@ namespace OrderSystem.Services
                 .Include(o => o.Products)
                 .FirstOrDefaultAsync(o => o.Id == orderId);
 
-            if (order == null) throw new Exception("Pedido não encontrado.");
+            if (order == null) throw new Exception("Order not found.");
 
             order.RemoveProduct(productId);
 
